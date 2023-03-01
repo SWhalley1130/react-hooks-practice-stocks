@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Header from "./Header";
 import MainContainer from "./MainContainer";
+import {v4 as uuid} from "uuid";
 
 function App() {
   const [stocks, setStocks]=useState([]);
@@ -13,13 +14,21 @@ function App() {
     .then(data=>setStocks(data))
   },[]);
 
-  function handleClick(stock, isMine, e)
+  function handleClick(stock, isMine)
   {
-    console.log(e.target)
-    isMine ? 
-      setMyPortfolio(myPortfolio.filter(item=>item!==stock))
-      :
-      setMyPortfolio([...myPortfolio, stock])
+    if (isMine)  
+      {
+        setMyPortfolio(myPortfolio.filter(item=>item.id!==stock.id));
+      }
+      else 
+      {
+        let newStock={
+          id: uuid(),
+          name: stock.name,
+          price: stock.price
+        };
+        setMyPortfolio([...myPortfolio, newStock]);
+      }
   }
 
   return (
