@@ -3,18 +3,20 @@ import StockContainer from "./StockContainer";
 import PortfolioContainer from "./PortfolioContainer";
 import SearchBar from "./SearchBar";
 
-function MainContainer({stocks, addToPortfolio, myPortfolio}) {
+function MainContainer({stocks, handleClick, myPortfolio}) {
   return (
     <div>
       <SearchBar />
       <div className="row">
         <div className="col-8">
           <StockContainer 
-            addToPortfolio={addToPortfolio}
+            handleClick={handleClick}
             stocks={stocks}/>
         </div>
         <div className="col-4">
-          <PortfolioContainer myPortfolio={myPortfolio}/>
+          <PortfolioContainer 
+            handleClick={handleClick}
+            myPortfolio={myPortfolio}/>
         </div>
       </div>
     </div>

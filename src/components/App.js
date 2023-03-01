@@ -13,9 +13,13 @@ function App() {
     .then(data=>setStocks(data))
   },[]);
 
-  function addToPortfolio(stock)
+  function handleClick(stock, isMine, e)
   {
-    setMyPortfolio([...myPortfolio, stock])
+    console.log(e.target)
+    isMine ? 
+      setMyPortfolio(myPortfolio.filter(item=>item!==stock))
+      :
+      setMyPortfolio([...myPortfolio, stock])
   }
 
   return (
@@ -23,7 +27,7 @@ function App() {
       <Header />
       <MainContainer 
         myPortfolio={myPortfolio}
-        addToPortfolio={addToPortfolio}
+        handleClick={handleClick}
         stocks={stocks} />
     </div>
   );
